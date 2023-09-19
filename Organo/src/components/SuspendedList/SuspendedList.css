@@ -1,7 +1,9 @@
 .suspended-list label {
     display: block;
     margin-bottom: 8px;
-    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .suspended-list select {

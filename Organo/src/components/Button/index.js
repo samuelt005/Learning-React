@@ -1,3 +1,10 @@
-import {Button} from "./Button";
+import './Button.css';
+export const Button = (props) => {
+    return (
+        <button className="button">
+            {props.children}
+        </button>
+    )
+}
 
 export default Button
