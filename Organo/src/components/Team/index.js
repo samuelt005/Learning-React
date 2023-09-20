@@ -1,23 +1,27 @@
 import './Team.css';
 import Member from "../Member";
-import member from "../Member";
-export const Team = (props) => {
-    const primaryColor = { backgroundColor: props.primaryColor };
-    const secondaryColor = { backgroundColor: props.secondaryColor };
+import hexToRgba from 'hex-to-rgba';
+
+export const Team = ({ team, members, onDelete, changeColor, onFavorite }) => {
+    const color = { backgroundColor: team.color };
+    const secondaryColor = { backgroundColor: hexToRgba(team.color, 0.5) };
 
     return (
-        (props.members.length > 0) ?
+        (members.length > 0) ?
         <section className="team" style={secondaryColor}>
-            <h3>{props.name}</h3>
-            <hr style={primaryColor}/>
+            <input onChange={event => changeColor(event.target.value, team.id)} value={team.color} type="color" className="input-color"/>
+            <h3>{team.name}</h3>
+            <hr style={color}/>
             <div className="members">
-                {props.members.map( member => <Member
-                    backgroundColor={props.primaryColor}
-                    key={member.name}
-                    name={member.name}
-                    charge={member.charge}
-                    image={member.image}
-                />)}
+                {members.map( (member, index) => {
+                    return <Member
+                        key={index}
+                        member={member}
+                        backgroundColor={color}
+                        onDelete={onDelete}
+                        onFavorite={onFavorite}
+                    />;
+                })}
             </div>
         </section>
             : ""

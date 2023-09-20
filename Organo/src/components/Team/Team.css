@@ -1,11 +1,15 @@
 .team {
     text-align: center;
     padding: 32px;
+    position: relative;
 }
 
 .team h3 {
     font-size: 32px;
-
+    font-family: 'Prata', serif;
+    font-weight: 400;
+    text-align: center;
+    margin: 2px 0;
 }
 
 .team hr {
@@ -20,4 +24,12 @@
     gap: 24px;
     margin-top: 32px;
     flex-wrap: wrap;
+}
+
+.input-color {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    background: none;
+    border: none;
 }

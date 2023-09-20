@@ -1,5 +1,5 @@
 import './Form.css';
-import TextField from "../TextField";
+import Field from "../Field";
 import SuspendedList from "../SuspendedList";
 import Button from "../Button";
 import {useState} from "react";
@@ -9,6 +9,8 @@ export const Form = (props) => {
     const [charge, setCharge] = useState("");
     const [image, setImage] = useState("");
     const [team, setTeam] = useState("");
+    const [teamName, setTeamName] = useState("");
+    const [teamColor, setTeamColor] = useState("");
 
     const onSave = (event) => {
         event.preventDefault();
@@ -24,12 +26,22 @@ export const Form = (props) => {
         setTeam("");
     }
 
+    const onSaveTeam = (event) => {
+        event.preventDefault();
+        props.onRegisterTeam({
+            name: teamName,
+            color: teamColor
+        })
+        setTeamName("");
+        setTeamColor("");
+    }
+
     return (
         <section className="form">
             <form onSubmit={onSave}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
 
-                <TextField
+                <Field
                     required={true}
                     label="Nome"
                     placeholder="Digite seu nome"
@@ -37,7 +49,7 @@ export const Form = (props) => {
                     onChanged={value => setName(value)}
                 />
 
-                <TextField
+                <Field
                     required={true}
                     label="Cargo"
                     placeholder="Digite seu cargo"
@@ -45,7 +57,7 @@ export const Form = (props) => {
                     onChanged={value => setCharge(value)}
                 />
 
-                <TextField
+                <Field
                     label="Imagem"
                     placeholder="Digite o endereço da imagem"
                     value={image}
@@ -62,6 +74,30 @@ export const Form = (props) => {
 
                 <Button>
                     Criar Card
+                </Button>
+            </form>
+            <form onSubmit={onSaveTeam}>
+                <h2>Preencha os dados para criar um novo time.</h2>
+
+                <Field
+                    required
+                    label="Nome"
+                    placeholder="Digite o nome do time"
+                    value={teamName}
+                    onChanged={value => setTeamName(value)}
+                />
+
+                <Field
+                    required
+                    type="color"
+                    label="Cor"
+                    placeholder="Digite a cor do time"
+                    value={teamColor}
+                    onChanged={value => setTeamColor(value)}
+                />
+
+                <Button>
+                    Criar Time
                 </Button>
             </form>
         </section>
