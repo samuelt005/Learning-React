@@ -58,7 +58,7 @@ const App = () => {
                     <GaleryContent>
                         <Banner
                             text="A galeria mais completa de fotos do espaço!"
-                            backgroundImage="/src/assets/banner.png"
+                            backgroundImage="/images/banner.png"
                         />
                         <Gallery
                             onSelectedImage={ image => setSelectedImage(image) }
