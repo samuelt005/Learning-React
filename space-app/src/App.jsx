@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {Banner, Gallery, Global, Header, Sidebar, ZoomModal, Footer} from "/src/components";
-import pictures from "/src/Pictures.json";
+import {Banner, Gallery, Global, Header, Sidebar, ZoomModal, Footer} from "./components/Index.jsx";
+import pictures from "./Pictures.json";
 import {useState} from "react";
 
 const GradiantBackground = styled.div`
