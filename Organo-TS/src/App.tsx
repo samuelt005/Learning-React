@@ -4,6 +4,8 @@ import Form from "./components/Form";
 import Team from "./components/Team";
 import Footer from "./components/Footer";
 import { v4 as uuidv4 } from 'uuid';
+import { IMember } from "./shared/interfaces/IMember";
+import { ITeam } from "./shared/interfaces/ITeam";
 
 function App() {
 
@@ -80,17 +82,17 @@ function App() {
         }
     ]
 
-    const [members, setMembers] = useState(inicial)
+    const [members, setMembers] = useState<IMember[]>(inicial)
 
-    const onRegisterMember = (member) => {
+    const onRegisterMember = (member: IMember) => {
         setMembers([...members, member]);
     }
 
-    function deleteMember(id) {
+    function deleteMember(id: string) {
         setMembers(members.filter(member => member.id !== id));
     }
 
-    function changeColor(color, id) {
+    function changeColor(color: string, id: string) {
         setTeams(teams.map(team => {
             if(team.id === id) {
                 team.color = color;
@@ -99,7 +101,7 @@ function App() {
         }));
     }
 
-    function resolveFavorite(id) {
+    function resolveFavorite(id: string) {
         setMembers(members.map(member => {
             if (member.id === id) {
                 member.favorite = !member.favorite;
@@ -108,7 +110,7 @@ function App() {
         }))
     }
 
-    function onRegisterTeam(newTeam) {
+    function onRegisterTeam(newTeam: ITeam) {
         setTeams([ ...teams, { ...newTeam, id:uuidv4() } ])
     }
 

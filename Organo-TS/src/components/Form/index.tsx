@@ -3,7 +3,17 @@ import Field from "../Field";
 import SuspendedList from "../SuspendedList";
 import Button from "../Button";
 import {useState} from "react";
-export const Form = (props) => {
+import { IMember } from '../../shared/interfaces/IMember';
+import { ITeam } from '../../shared/interfaces/ITeam';
+import { v4 as uuidv4 } from 'uuid';
+
+interface FormProps {
+    onRegister: (member: IMember) => void
+    onRegisterTeam: (member: ITeam) => void
+    teamNames: string[]
+}
+
+export const Form = (props: FormProps) => {
 
     const [name, setName] = useState("");
     const [charge, setCharge] = useState("");
@@ -12,9 +22,10 @@ export const Form = (props) => {
     const [teamName, setTeamName] = useState("");
     const [teamColor, setTeamColor] = useState("");
 
-    const onSave = (event) => {
+    const onSave = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         props.onRegister({
+            id: uuidv4(),
             name,
             charge,
             image,
@@ -26,9 +37,10 @@ export const Form = (props) => {
         setTeam("");
     }
 
-    const onSaveTeam = (event) => {
+    const onSaveTeam = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         props.onRegisterTeam({
+            id: uuidv4(),
             name: teamName,
             color: teamColor
         })
@@ -42,7 +54,8 @@ export const Form = (props) => {
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
 
                 <Field
-                    required={true}
+                    required
+                    type='text'
                     label="Nome"
                     placeholder="Digite seu nome"
                     value={name}
@@ -50,7 +63,8 @@ export const Form = (props) => {
                 />
 
                 <Field
-                    required={true}
+                    required
+                    type='text'
                     label="Cargo"
                     placeholder="Digite seu cargo"
                     value={charge}
@@ -58,6 +72,7 @@ export const Form = (props) => {
                 />
 
                 <Field
+                    type='text'
                     label="Imagem"
                     placeholder="Digite o endereço da imagem"
                     value={image}
@@ -65,7 +80,7 @@ export const Form = (props) => {
                 />
 
                 <SuspendedList
-                    required={true}
+                    required
                     label="Time"
                     items={props.teamNames}
                     value={team}
@@ -81,6 +96,7 @@ export const Form = (props) => {
 
                 <Field
                     required
+                    type='text'
                     label="Nome"
                     placeholder="Digite o nome do time"
                     value={teamName}

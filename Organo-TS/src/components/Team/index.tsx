@@ -1,8 +1,18 @@
 import './Team.css';
 import Member from "../Member";
 import hexToRgba from 'hex-to-rgba';
+import { IMember } from '../../shared/interfaces/IMember';
+import { ITeam } from '../../shared/interfaces/ITeam';
 
-export const Team = ({ team, members, onDelete, changeColor, onFavorite }) => {
+interface teamProps {
+    team: ITeam
+    members: IMember[]
+    onDelete: (id: string) => void;
+    onFavorite: (id: string) => void;
+    changeColor: (value: string, id: string) => void;
+}
+
+export const Team = ({ team, members, onDelete, onFavorite, changeColor, } :teamProps) => {
     const color = { backgroundColor: team.color };
     const secondaryColor = { backgroundColor: hexToRgba(team.color, 0.5) };
 
@@ -24,7 +34,7 @@ export const Team = ({ team, members, onDelete, changeColor, onFavorite }) => {
                 })}
             </div>
         </section>
-            : ""
+            : <></>
     )
 }
 

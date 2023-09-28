@@ -1,7 +1,15 @@
 import { AiFillCloseCircle, AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 import "./Member.css"
+import { IMember } from "../../shared/interfaces/IMember";
 
-const Member = ({ member, backgroundColor, onDelete, onFavorite }) => {
+interface memberProps {
+    member: IMember
+    backgroundColor: any
+    onDelete: (id: string) => void;
+    onFavorite: (id: string) => void;
+}
+
+const Member = ({ member, backgroundColor, onDelete, onFavorite } :memberProps) => {
     function favorite() {
         onFavorite(member.id);
     }

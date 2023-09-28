@@ -1,16 +1,16 @@
-import './Banner.css';
+import "./Banner.css";
 
 interface BannerProps {
-    imageSource: string
-    altText?: string
+    imageSource: string;
+    altText?: string;
 }
 
-const Banner = ({ imageSource, altText } :BannerProps) => {
+const Banner = ({ imageSource, altText }: BannerProps) => {
     return (
         <header className="banner">
-            <img src={imageSource} alt={altText}/>
+            <img src={imageSource} alt={altText} />
         </header>
-    )
-}
+    );
+};
 
-export default Banner
+export default Banner;
