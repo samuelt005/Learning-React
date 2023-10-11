@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
@@ -21,6 +22,23 @@ const StyledCover = styled.img`
 const StyledFavorite = styled.img`
     padding: 0 1em;
     width: 25px;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
-export { CardContainer, StyledCover, StyledFavorite };
+const StyledLink = styled(Link)`
+    color: var(--preto);
+    font-size: 18px;
+    font-weight: 400;
+    padding: 1em;
+    text-decoration: none;
+`;
+
+export {
+  CardContainer,
+  StyledCover,
+  StyledFavorite,
+  StyledLink,
+};

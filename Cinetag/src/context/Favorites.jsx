@@ -8,7 +8,7 @@ export default function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
     <FavoritesContext.Provider value={{ favorites, setFavorites }}>
       {children}
     </FavoritesContext.Provider>
@@ -20,23 +20,25 @@ FavoritesProvider.propTypes = {
 };
 
 export function useFavoriteContext() {
-  const { favorite, setFavorite } = useContext(FavoritesContext);
+  const { favorites, setFavorites } = useContext(FavoritesContext);
 
   function addFavorite(newFavorite) {
-    const repeatedFavorite = favorite.some((item) => item.id === newFavorite.id);
+    const repeatedFavorite = favorites.some(
+      (item) => item.id === newFavorite.id,
+    );
 
-    const novaLista = [...favorite];
+    let newList = [...favorites];
 
     if (!repeatedFavorite) {
-      novaLista.push(newFavorite);
-      return setFavorite(novaLista);
+      newList.push(newFavorite);
+      return setFavorites(newList);
     }
 
-    novaLista.splice(novaLista.indexOf(newFavorite), 1);
-    return setFavorite(novaLista);
+    newList = favorites.filter((fav) => fav.id !== newFavorite.id);
+    return setFavorites(newList);
   }
   return {
-    favorite,
+    favorites,
     addFavorite,
   };
 }

@@ -1,16 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useFavoriteContext } from '../../context/Favorites';
 import iconeFavoritar from './favorite.png';
-import { CardContainer, StyledCover, StyledFavorite } from './Styles';
+import iconeDesfavoritar from './favorite_outline.png';
+import {
+  CardContainer,
+  StyledCover,
+  StyledFavorite,
+  StyledLink,
+} from './Styles';
 
 function Card({ id, title, cover }) {
+  const { favorites, addFavorite } = useFavoriteContext();
+  const isFavorite = favorites.some((fav) => fav.id === id);
+  const icon = isFavorite ? iconeFavoritar : iconeDesfavoritar;
+
   return (
     <CardContainer id={id}>
-      <StyledCover src={cover} alt={title} />
-      <h2>{title}</h2>
+      <StyledLink to={`/${id}`}>
+        <StyledCover src={cover} alt={title} />
+        <h2>{title}</h2>
+      </StyledLink>
       <StyledFavorite
-        src={iconeFavoritar}
+        src={icon}
         alt="Favoritar filme"
+        onClick={() => {
+          addFavorite({ id, title, cover });
+        }}
       />
     </CardContainer>
   );

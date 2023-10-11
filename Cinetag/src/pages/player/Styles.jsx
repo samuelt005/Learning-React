@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const StyledSection = styled.section`
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 40px;
+    justify-content: center;
+    height: 80vh;
 `;
 
 export default StyledSection;

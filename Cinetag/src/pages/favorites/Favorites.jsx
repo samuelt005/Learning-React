@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFavoriteContext } from '../../context/Favorites';
 import {
   Banner,
   Card,
@@ -8,13 +9,17 @@ import {
 import StyledSection from './Styles';
 
 function Favorites() {
+  const { favorites } = useFavoriteContext();
+
   return (
     <>
       <Banner image="favoritos" />
       <Container>
         <Title>Meus Favoritos</Title>
         <StyledSection>
-          <Card id={1} title="Gato bonifácio" cover="https://thecatapi.com/api/images/get?format=src&type=png" />
+          {favorites.map((fav) => (
+            <Card id={fav.id} title={fav.title} cover={fav.cover} key={fav.id} />
+          ))}
         </StyledSection>
       </Container>
     </>
